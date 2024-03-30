@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "User was successfully updated.", status: :see_other
+      redirect_to @user, notice: I18n.t('controllers.users.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  private
   def user_params
     params.require(:user).permit(:name, :email)
   end
