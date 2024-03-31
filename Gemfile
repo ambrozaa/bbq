@@ -17,6 +17,8 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
+gem "importmap-rails"
+gem "stimulus-rails"
 gem "bootsnap", require: false
 
 group :development, :test do
@@ -24,5 +26,3 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
-
-gem "importmap-rails", "~> 2.0"
