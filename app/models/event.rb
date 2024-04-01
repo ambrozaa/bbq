@@ -4,6 +4,10 @@
 class Event < ActiveRecord::Base
   # событие всегда принадлежит юзеру
   belongs_to :user
+  has_many :comments
+  has_many :subscriptions
+  has_many :subscibers, through: :subscriptions, source: :user
+
   # юзера не может не быть
   validates :user, presence: true
 

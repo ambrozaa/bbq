@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
 
 /*
     Наши дополнительные стили для оформления отступов и тамбинашек картинок

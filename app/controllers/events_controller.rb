@@ -1,47 +1,50 @@
+# Контроллер, управляющий событиями
 class EventsController < ApplicationController
+  # Встроенный в девайз фильтр - посылает незалогиненного пользователя
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_event, only: %i[ show ]
-  before_action :set_current_user_event, only: %i[ edit update destroy ]
 
-  # GET /events
+  # Задаем объект @event для экшена show
+  before_action :set_event, only: [:show]
+
+  # Задаем объект @event от текущего юзера для других действий
+  before_action :set_current_user_event, only: [:edit, :update, :destroy]
+
   def index
     @events = Event.all
   end
 
-  # GET /events/1
   def show
+    @new_comment = @event.comments.build(params[:comment])
+    @new_subscription = @event.subscriptions.build(params[:subscription])
   end
 
-  # GET /events/new
   def new
     @event = current_user.events.build
   end
 
-  # GET /events/1/edit
   def edit
   end
 
-  # POST /events
   def create
     @event = current_user.events.build(event_params)
 
     if @event.save
+      # Используем сообщение из файла локалей ru.yml
+      # controllers -> events -> created
       redirect_to @event, notice: I18n.t('controllers.events.created')
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
-  # PATCH/PUT /events/1
   def update
     if @event.update(event_params)
       redirect_to @event, notice: I18n.t('controllers.events.updated')
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
-  # DELETE /events/1
   def destroy
     @event.destroy
     redirect_to events_url, notice: I18n.t('controllers.events.destroyed')
