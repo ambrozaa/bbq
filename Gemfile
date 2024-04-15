@@ -17,6 +17,9 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
+gem 'carrierwave'
+gem 'rmagick'
+
 gem "importmap-rails"
 gem "stimulus-rails"
 gem "bootsnap", require: false

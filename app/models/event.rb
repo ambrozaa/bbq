@@ -4,9 +4,10 @@
 class Event < ActiveRecord::Base
   # событие всегда принадлежит юзеру
   belongs_to :user
-  has_many :comments
-  has_many :subscriptions
-  has_many :subscibers, through: :subscriptions, source: :user
+  has_many :comments, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscribers, through: :subscriptions, source: :user
+  has_many :photos
 
   # юзера не может не быть
   validates :user, presence: true
@@ -17,4 +18,8 @@ class Event < ActiveRecord::Base
   validates :address, presence: true
   validates :datetime, presence: true
 
+  def visitors
+    (subscribers + [user]).uniq
+  end
 end
+

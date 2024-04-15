@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # юзер может создавать много событий
   has_many :events
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :subscriptions
 
   # имя юзера должно быть, и не длиннее 35 букв
@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   before_validation :set_name, on: :create
 
   after_commit :link_subscriptions, on: :create
+
+  mount_uploader :avatar, AvatarUploader
 
   private
   def link_subscriptions

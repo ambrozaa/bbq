@@ -1,8 +1,9 @@
 <div class="event">
   <div class="event-info row">
     <div class="col-md-12">
+      <%# Выводим произвольную фотку в качестве фона для шапки события %>
       <%= content_tag 'div', '', class: 'event-background',
-                      style: "background-image: url(#{asset_path('event.jpg')})" %>
+                      style: "background-image: url(#{event_photo(@event)})" %>
 
       <div class="event-info-inner row">
         <div class="col-md-6">
@@ -29,11 +30,25 @@
 
   <div class="row">
     <div class="col-md-8">
+      <div class="event-photos">
+        <%# Выводим все фотографии события %>
+        <div class="event-photos-gallery">
+          <%= render partial: 'photos/photo', collection: @event.photos.except(@new_photo) %>
+        </div>
+
+        <%# Рисуем форму для добавления новой фотографии %>
+        <div class="event-photo-form">
+          <%= render partial: 'photos/form', locals: {photo: @new_photo || @event.photos.build} %>
+        </div>
+      </div>
+
       <div class="event-comments buffer-top">
-        <%= render partial: 'comments/form', locals: {comment: @new_comment || @event.comments.build} %>
+        <%= render partial: 'comments/form',
+                   locals: {comment: @new_comment || @event.comments.build} %>
 
         <div class="buffer-both">
-          <%= render partial: 'comments/comment', collection: @event.comments.except(@new_comment) %>
+          <%= render partial: 'comments/comment',
+                     collection: @event.comments.except(@new_comment) %>
         </div>
       </div>
     </div>
@@ -55,7 +70,8 @@
       <div class="event-subscription-form">
         <h4>Я пойду:</h4>
         <div>
-          <%= render partial: 'subscriptions/form', locals: { subscription: @new_subscription || @event.subscriptions.build
+          <%= render partial: 'subscriptions/form', locals: {
+            subscription: @new_subscription || @event.subscriptions.build
           } %>
         </div>
       </div>
