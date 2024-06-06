@@ -1,14 +1,12 @@
 class Subscription < ApplicationRecord
   belongs_to :event
-  belongs_to :user, optional: true
+  belongs_to :user
 
   validates :event, presence: true
 
   # проверки выполняются только если user не задан (незареганные приглашенные)
   validates :user_name, presence: true, unless: lambda {user.present?}
   validates :user_email, presence: true, format: /\A[a-zA-Z0-9\-_.]+@[a-zA-Z0-9\-_.]+\z/, unless: lambda {user.present?}
-  validate :unique_email
-
 
 
   # для данного event_id один юзер может подписаться только один раз (если юзер задан)
