@@ -10,7 +10,7 @@ BBQ - это `Ruby on Rails` приложение, которое позволя
 1. Склонировать репозиторий:
 
 ```
-git clone https://github.com/eternalyoung/bbq.git
+git clone https://github.com/ambrozaa/bbq
 ```
 
 2. Установить все необходимые гемы:
