@@ -9,6 +9,10 @@ gem "puma", ">= 5.0"
 gem "devise"
 gem "rails-i18n"
 gem "devise-i18n"
+gem 'rspec-rails'
+gem "pundit"
+gem "factory_bot_rails"
+
 
 gem "twitter-bootstrap-rails"
 gem "sassc-rails"
@@ -27,5 +31,7 @@ gem "bootsnap", require: false
 group :development, :test do
   gem "sqlite3", "~> 1.4"
   gem "debug", platforms: %i[ mri windows ]
+  gem 'shoulda-matchers'
+  gem 'byebug'
 end
 
