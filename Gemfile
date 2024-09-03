@@ -12,13 +12,12 @@ gem "devise-i18n"
 gem 'rspec-rails'
 gem "pundit"
 gem "factory_bot_rails"
-
+gem 'resque'
+gem 'rack-session', '~> 1.0', '>= 1.0.2'
 
 gem "twitter-bootstrap-rails"
 gem "sassc-rails"
-
 gem 'uglifier'
-
 gem 'jquery-rails'
 
 gem 'carrierwave'
@@ -33,5 +32,6 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'shoulda-matchers'
   gem 'byebug'
+  gem 'dotenv-rails'
 end
 
